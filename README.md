@@ -35,3 +35,13 @@ or
 ```bash
 ./bettermod.py
 ```
+
+### Reset
+To reset the database run
+```bash
+python bettermod.py reset
+```
+or
+```bash
+./bettermod.py reset
+```

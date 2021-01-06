@@ -9,8 +9,13 @@ class Database:
         self.users = self.db["users"]
         self.guilds = self.db["guilds"]
 
+    def reset(self):
+        self.client.drop_database("bettermod")
+
     def get_token(self):
         token = self.settings.find_one()
+        if token is None:
+            return None
         return token["token"]
 
     def set_token(self, token: str):
