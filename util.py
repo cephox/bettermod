@@ -6,18 +6,16 @@ def check_for_token():
     if len(argv) == 2:
         if argv[1] == "reset":
             database.reset()
-            print("The bot has been reset successfully")
+            print("The bot has been reset")
             exit(0)
-
-        database.set_token(argv[1])
-        print("The bots token has been set")
-        print("Starting ...")
-        print()
 
     if database.get_token() is None:
         print("No token has been provided so far")
-        print("To start the bot, pass the token as the first argument")
-        exit(0)
+        print("")
+        database.set_token(input("Please enter your discord bot token: "))
+        database.set_setting("owner_id", input("Please enter the id of the bot owner: "))
+        print("")
+        print("The bot is now starting\n")
 
 
 def add_cogs(bot, *cogs):
