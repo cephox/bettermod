@@ -1,7 +1,6 @@
-from discord.ext.commands import Bot, Cog, Context, command
+from discord.ext.commands import Bot, Cog, Context, command, is_owner
 from discord.embeds import Embed
 import os
-from checks import is_owner
 
 
 class Debugging(Cog):

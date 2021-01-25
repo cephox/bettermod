@@ -13,7 +13,6 @@ def check_for_token():
         print("No token has been provided so far")
         print("")
         database.set_token(input("Please enter your discord bot token: "))
-        database.set_setting("owner_id", input("Please enter the id of the bot owner: "))
         print("")
         print("The bot is now starting\n")
 
