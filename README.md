@@ -13,10 +13,10 @@ A better discord moderation bot
 git clone https://github.com/cephox/bettermod
 cd bettermod
 
-python bettermod.py
+./bettermod.py
 ```
 
 ### Reset the bot and database
 ```bash
-python bettermod.py reset
+./bettermod.py reset
 ```
