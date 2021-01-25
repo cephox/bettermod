@@ -1,0 +1,6 @@
+# info command
+info_information_about: "Information about {}"
+info_roles: "roles"
+info_created: "created"
+info_joined: "joined"
+info_id: "ID"

@@ -1,5 +1,7 @@
 from pymongo import MongoClient
 
+user_defaults = dict()
+
 
 class Database:
     def __init__(self, port: str = "27017"):
@@ -15,7 +17,11 @@ class Database:
         self.users.update_one({"user_id": user_id}, {"$set": data})
 
     def get_user(self, user_id):
-        return self.users.find_one({"user_id": user_id})
+        user = self.users.find_one({"user_id": user_id})
+        if user:
+            return user
+        user_defaults["user_id"] = user_id
+        return self.users.insert_one(user_defaults)
 
     def set_setting(self, name, value):
         self.settings.delete_one({"name": name})
