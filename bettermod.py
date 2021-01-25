@@ -14,7 +14,7 @@ bot: AutoShardedBot = AutoShardedBot("--")
 
 @bot.event
 async def on_ready():
-    print("\n" + bot.user.name + " is now online.\n")
+    print(bot.user.name + " is now online.\n")
 
 
 add_cogs(bot, Debugging, Moderation)
