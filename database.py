@@ -7,10 +7,15 @@ class Database:
         self.db = self.client["bettermod"]
         self.settings = self.db["settings"]
         self.users = self.db["users"]
-        self.guilds = self.db["guilds"]
 
     def reset(self):
         self.client.drop_database("bettermod")
+
+    def update_user(self, user_id, data: dict):
+        self.users.update_one({"user_id": user_id}, {"$set": data})
+
+    def get_user(self, user_id):
+        return self.users.find_one({"user_id": user_id})
 
     def set_setting(self, name, value):
         self.settings.delete_one({"name": name})
