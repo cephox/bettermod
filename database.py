@@ -21,7 +21,8 @@ class Database:
         if user:
             return user
         user_defaults["user_id"] = user_id
-        return self.users.insert_one(user_defaults)
+        self.users.insert_one(user_defaults)
+        return self.get_user(user_id)
 
     def set_setting(self, name, value):
         self.settings.delete_one({"name": name})
