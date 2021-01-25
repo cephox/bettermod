@@ -1,6 +1,10 @@
 # info command
 info_information_about: "Information about {}"
-info_roles: "roles"
+info_display_name: "Display name"
+info_roles: "Roles"
+info_id: "ID"
+info_mention: "Mention"
+info_bot: "Bot"
+info_administrator: "Administrator"
 info_created: "created"
 info_joined: "joined"
-info_id: "ID"
