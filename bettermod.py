@@ -1,7 +1,6 @@
 #!/bin/python
 from database import database
 from util import check_for_token, add_cogs
-import language
 
 from discord.ext.commands import AutoShardedBot
 
@@ -17,8 +16,6 @@ bot: AutoShardedBot = AutoShardedBot("--")
 async def on_ready():
     print(bot.user.name + " is now online.\n")
 
-
-language.init()
 
 add_cogs(bot, Debugging, Moderation)
 bot.run(database.get_token())
