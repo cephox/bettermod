@@ -46,7 +46,10 @@ class Moderation(Cog):
                                timestamp=datetime.now())
         if reason:
             private.add_field(name="Reason", value=reason, inline=False)
+
+        private.set_thumbnail(url=ctx.guild.icon_url)
         private.add_field(name="kicked by", value=ctx.author.display_name, inline=False)
+        private.set_footer(text="bettermod by @ce_phox#1259")
         await member.send(embed=private)
 
         await member.kick(reason=reason)
