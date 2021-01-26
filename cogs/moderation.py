@@ -59,7 +59,8 @@ class Moderation(Cog):
         <amount>
         """
         deleted = await ctx.channel.purge(limit=amount + 1)
-        message = await ctx.send(embed=Embed(description=f"Deleted {len(deleted) - 1} message(s)", color=Color.greyple()))
+        message = await ctx.send(
+            embed=Embed(description=f"Deleted {len(deleted) - 1} message(s)", color=Color.greyple()))
         await message.delete(delay=3)
 
     @command()
