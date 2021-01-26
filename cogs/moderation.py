@@ -68,9 +68,9 @@ class Moderation(Cog):
                         value=" ".join(r.mention for r in member.roles[:0:-1]))
         embed.add_field(name="Mention", value=member.mention)
         embed.add_field(name="ID", value=f"{member.id}")
-        embed.add_field(name="Bot", value="✓" if member.bot else "✗")
+        embed.add_field(name="Bot", value=":white_check_mark:" if member.bot else ":x:")
         embed.add_field(name="Administrator",
-                        value="✓" if member.guild_permissions.administrator else "✗")
+                        value=":white_check_mark:" if member.guild_permissions.administrator else ":x:")
         embed.add_field(name="joined", value=f"{member.joined_at}")
         embed.add_field(name="created", value=f"{member.created_at}")
         await ctx.send(embed=embed)
