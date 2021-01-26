@@ -9,6 +9,7 @@ import logger
 from cogs.debug import Debugging
 from cogs.moderation import Moderation
 from cogs.settings import Settings
+from cogs.events import Events
 from database import database
 from util import check_for_token, add_cogs
 
@@ -62,5 +63,5 @@ async def on_command_error(ctx: Context, error):
 
 
 logger.init()
-add_cogs(bot, Debugging, Moderation, Settings)
+add_cogs(bot, Debugging, Moderation, Settings, Events)
 bot.run(database.get_token())

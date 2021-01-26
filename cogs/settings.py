@@ -40,7 +40,7 @@ class Settings(Cog):
         embed.set_footer(text="Channel changed by " + ctx.author.name + "#" + ctx.author.discriminator)
 
         await ctx.send(embed=embed)
-        await log(ctx, embed=embed)
+        await log(ctx.guild, embed=embed)
 
 
 def setup(bot):
