@@ -3,7 +3,7 @@ from database import database
 from util import check_for_token, add_cogs
 
 from discord.ext.commands import AutoShardedBot
-from discord.ext.commands.errors import MissingRequiredArgument, MemberNotFound
+from discord.ext.commands.errors import MissingRequiredArgument, MemberNotFound, MissingPermissions
 from discord.ext.commands import Context
 from discord.embeds import Embed
 from discord.colour import Color
@@ -39,6 +39,17 @@ async def on_command_error(ctx: Context, error):
 
     elif isinstance(error, MemberNotFound):
         embed.description = "Member `" + error.argument + "` not found"
+    elif isinstance(error, MissingPermissions):
+
+        permissions = [perm.replace('_', ' ').replace('guild', 'server').title() for perm in error.missing_perms]
+        if len(permissions) > 2:
+            fmt = '{} and `{}`'.format(", ".join(f"`{i}`" for i in permissions[:-1]), permissions[-1])
+        else:
+            fmt = ' and '.join(f"`{i}`" for i in permissions)
+
+        name = "s" if len(permissions) > 1 else ""
+        embed.add_field(name="Missing Permissions",
+                        value=f"You do not have the required permission to execute this command\nRequired permission{name}:\n" + fmt)
     else:
         embed.add_field(name="Unknown error", value=error)
 
