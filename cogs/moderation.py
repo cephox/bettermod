@@ -6,6 +6,7 @@ from discord.embeds import Embed
 from discord.ext.commands import Cog, Bot, command, Context, has_permissions
 from discord.member import Member
 
+from logger import log
 from util import can_interact
 
 
@@ -40,6 +41,7 @@ class Moderation(Cog):
             embed.add_field(name="Reason", value=reason, inline=False)
         embed.add_field(name="kicked by", value=ctx.author.display_name, inline=False)
         await ctx.send(embed=embed)
+        await log(ctx, embed=embed)
 
         private: Embed = Embed(title="You have been kicked from " + ctx.guild.name, color=Color(0xc9b200),
                                timestamp=datetime.now())
