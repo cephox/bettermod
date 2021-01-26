@@ -1,13 +1,12 @@
-from util import can_interact
+from datetime import datetime
+from typing import Optional
 
+from discord.colour import Color
+from discord.embeds import Embed
 from discord.ext.commands import Cog, Bot, command, Context, has_permissions
 from discord.member import Member
-from discord.embeds import Embed
-from discord.colour import Color
 
-from datetime import datetime
-
-from typing import Optional
+from util import can_interact
 
 
 class Moderation(Cog):

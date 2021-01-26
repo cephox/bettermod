@@ -1,15 +1,14 @@
 #!/bin/python
+from discord.colour import Color
+from discord.embeds import Embed
+from discord.ext.commands import AutoShardedBot
+from discord.ext.commands import Context
+from discord.ext.commands.errors import MissingRequiredArgument, MemberNotFound, MissingPermissions
+
+from cogs.debug import Debugging
+from cogs.moderation import Moderation
 from database import database
 from util import check_for_token, add_cogs
-
-from discord.ext.commands import AutoShardedBot
-from discord.ext.commands.errors import MissingRequiredArgument, MemberNotFound, MissingPermissions
-from discord.ext.commands import Context
-from discord.embeds import Embed
-from discord.colour import Color
-
-from cogs.moderation import Moderation
-from cogs.debug import Debugging
 
 check_for_token()
 

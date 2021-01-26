@@ -1,7 +1,8 @@
+from sys import argv
+
 from discord.member import Member
 
 from database import database
-from sys import argv
 
 
 def can_interact(member: Member, target: Member):
