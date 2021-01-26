@@ -7,9 +7,9 @@ from discord.ext.commands.errors import MissingRequiredArgument, MemberNotFound,
 
 import logger
 from cogs.debug import Debugging
+from cogs.events import Events
 from cogs.moderation import Moderation
 from cogs.settings import Settings
-from cogs.events import Events
 from database import database
 from util import check_for_token, add_cogs
 
@@ -57,7 +57,8 @@ async def on_command_error(ctx: Context, error):
         embed.add_field(name="Missing Permissions",
                         value=f"You do not have the required permission to execute this command\nRequired permission{name}:\n" + fmt)
     else:
-        embed.add_field(name="Unknown error", value=error)
+        embed.add_field(name="Unknown error", value=str(error), inline=False)
+        embed.add_field(name="Debug Information", value=str(type(error)), inline=False)
 
     await ctx.send(embed=embed)
 
