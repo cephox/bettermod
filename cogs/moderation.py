@@ -51,6 +51,13 @@ class Moderation(Cog):
 
         await member.kick(reason=reason)
 
+    @has_permissions(manage_messages=True)
+    @command(aliases=["purge"])
+    async def clear(self, ctx: Context, amount: int):
+        deleted = await ctx.channel.purge(limit=amount + 1)
+        message = await ctx.send(embed=Embed(description=f"Deleted {len(deleted) - 1} message(s)", color=Color.greyple()))
+        await message.delete(delay=3)
+
     @command()
     async def info(self, ctx: Context, member: Member):
         """
