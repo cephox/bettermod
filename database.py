@@ -1,6 +1,7 @@
 from pymongo import MongoClient
 
 user_defaults = dict()
+guild_defaults = dict()
 
 
 class Database:
@@ -9,9 +10,21 @@ class Database:
         self.db = self.client["bettermod"]
         self.settings = self.db["settings"]
         self.users = self.db["users"]
+        self.guilds = self.db["guilds"]
 
     def reset(self):
         self.client.drop_database("bettermod")
+
+    def update_guild(self, guild_id, data: dict):
+        self.guilds.update_one({"guild_id": guild_id}, {"$set": data})
+
+    def get_guild(self, guild_id):
+        guild = self.guilds.find_one({"guild_id": guild_id})
+        if guild:
+            return guild
+        guild_defaults["guild_id"] = guild_id
+        self.guilds.insert_one(guild_defaults)
+        return self.get_guild(guild_id)
 
     def update_user(self, user_id, data: dict):
         self.users.update_one({"user_id": user_id}, {"$set": data})
