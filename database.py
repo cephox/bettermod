@@ -19,10 +19,12 @@ class Database:
         self.guilds.update_one({"guild_id": guild_id}, {"$set": data})
 
     def get_guild(self, guild_id):
+
         guild = self.guilds.find_one({"guild_id": guild_id})
         if guild:
             return guild
         guild_defaults["guild_id"] = guild_id
+
         self.guilds.insert_one(guild_defaults)
         return self.get_guild(guild_id)
 

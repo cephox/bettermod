@@ -5,8 +5,10 @@ from discord.ext.commands import AutoShardedBot
 from discord.ext.commands import Context
 from discord.ext.commands.errors import MissingRequiredArgument, MemberNotFound, MissingPermissions
 
+import logger
 from cogs.debug import Debugging
 from cogs.moderation import Moderation
+from cogs.settings import Settings
 from database import database
 from util import check_for_token, add_cogs
 
@@ -28,6 +30,7 @@ async def on_command_error(ctx: Context, error):
 
         syntax: str = ctx.command.help.split("\n")[1]
         syntax = syntax.replace("member", "member (mention | user id)")
+        syntax = syntax.replace("textchannel", "textchannel (mention | channel id)")
 
         embed.add_field(name="Syntax",
                         value=f"`{await ctx.bot.get_prefix(ctx)}{ctx.command.name} {syntax}`")
@@ -58,5 +61,6 @@ async def on_command_error(ctx: Context, error):
     await ctx.send(embed=embed)
 
 
-add_cogs(bot, Debugging, Moderation)
+logger.init()
+add_cogs(bot, Debugging, Moderation, Settings)
 bot.run(database.get_token())
