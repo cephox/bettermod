@@ -16,7 +16,7 @@ class Moderation(Cog):
 
     @command()
     @has_permissions(kick_members=True)
-    async def kick(self, ctx: Context, member: Member, *, reason: Optional[str] = ""):
+    async def kick(self, ctx: Context, member: Member, *, reason: Optional[str] = "No reason provided"):
         """
         Kicks a member
         <member> [reason]
