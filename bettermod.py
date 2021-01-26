@@ -32,6 +32,9 @@ async def on_command_error(ctx: Context, error):
         embed.add_field(name="Syntax",
                         value=f"`{await ctx.bot.get_prefix(ctx)}{ctx.command.name} {syntax}`")
 
+        if ctx.command.aliases:
+            embed.add_field(name="Aliases", value="\n".join(f"`{i}`" for i in ctx.command.aliases), inline=False)
+
         embed.add_field(name="Symbol explanation",
                         value="`<...>` - Required argument\n`[...]` - Optional argument\n`(...)` - explanation\n`|` - or",
                         inline=False)
