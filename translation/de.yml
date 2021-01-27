@@ -5,3 +5,9 @@ settings_language_list_all_languages: "Um alle Sprachen aufzulisten, gib {} ein"
 settings_language_changed_language: "Deine Sprache wurde zu {} geändert"
 settings_language_all_languages: "Sprachen"
 settings_language_abbreviation: "Abkürzung"
+
+## command: settings prefix
+settings_prefix_current_prefix: "Aktueller Präfix"
+settings_prefix_change_prefix: "Präfix ändern"
+settings_prefix_new_prefix: "Neuer Präfix"
+settings_prefix_changed_new_prefix: "Der Präfix wurde zu {} geändert"

@@ -1,6 +1,8 @@
 from sys import argv
 
-from database import database
+from discord.message import Message
+
+from database import database, guild_defaults
 
 
 def start_bot(bot):
@@ -25,3 +27,20 @@ def add_cogs(bot, *cogs):
             continue
         cog = cog_c(bot)
         bot.add_cog(cog)
+
+
+def update_prefix(guild_id, prefix):
+    database.update_guild(guild_id, {"prefix": prefix})
+    return database.get_guild(guild_id)["prefix"]
+
+
+def get_prefix(bot, message: Message):
+    guild = database.get_guild(message.guild.id)
+
+    try:
+        p = guild["prefix"]
+    except KeyError:
+        database.update_guild(message.guild.id, {"prefix": guild_defaults["prefix"]})
+        return get_prefix(bot, message)
+
+    return p, f"<@!{bot.user.id}> ", f"<@{bot.user.id}> "

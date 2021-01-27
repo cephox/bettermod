@@ -3,7 +3,9 @@ from pymongo import MongoClient
 user_defaults = {
     "language": "en"
 }
-guild_defaults = dict()
+guild_defaults = {
+    "prefix": "--"
+}
 
 
 class Database:
