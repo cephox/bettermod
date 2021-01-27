@@ -16,10 +16,10 @@ class Events(Cog):
 
     async def on_message_delete(self, message: Message):
         if message.content:
-            embed = Embed(title="Message deleted", color=Colours.orange(), timestamp=datetime.now())
+            embed = Embed(title="Message deleted", color=Colours.orange, timestamp=datetime.now())
             embed.add_field(name="Content", value=message.content, inline=False)
             embed.add_field(name="Channel", value=message.channel.mention)
-            embed.set_author(name=message.author.name + "#" + message.author.discriminator,
+            embed.set_author(name=str(message.author),
                              icon_url=message.author.avatar_url)
             if time := message.edited_at: embed.add_field(name="last edit", value=time)
             embed.set_footer(text=f"Author: {message.author.id} | Message ID: {message.id}")
@@ -34,7 +34,7 @@ class Events(Cog):
 
         guild = self.bot.get_guild(payload.guild_id)
 
-        embed = Embed(title="Uncached Message deleted", color=Colours.orange(), timestamp=datetime.now())
+        embed = Embed(title="Uncached Message deleted", color=Colours.orange, timestamp=datetime.now())
         channel = get(guild.channels, id=payload.channel_id)
         embed.add_field(name="Channel", value=channel.mention)
         embed.add_field(name="Message ID", value=payload.message_id)
