@@ -39,12 +39,17 @@ class Settings(Cog):
             userlang = get_user_language(ctx.author.id)
             embed = Embed(color=Colors.default)
 
-            embed.add_field(name="Current language", value=f"`{userlang.abbreviation} ({userlang.name})`", inline=False)
+            embed.add_field(name=userlang.settings_language_current_language,
+                            value=f"`{userlang.abbreviation} ({userlang.name})`", inline=False)
 
             embed.add_field(name=userlang.settings_language_all_languages, value="** **", inline=False)
             for lang in get_languages().keys():
                 embed.add_field(name=get_language(lang).name,
                                 value=f"**{userlang.settings_language_abbreviation}**\n`{lang}`")
+
+            prefixes = await ctx.bot.get_prefix(ctx.message)
+            embed.add_field(name=userlang.settings_language_change_language,
+                            value=f"`{prefixes[0]}settings language <{userlang.settings_language_new_language}>`", inline=False)
 
             await ctx.send(embed=embed)
         else:
@@ -53,8 +58,10 @@ class Settings(Cog):
 
                 embed = Embed(color=Colors.error)
                 embed.description = lang.f_settings_language_language_does_not_exists(f"`{language_abbreviation}`")
+
+                prefixes = await ctx.bot.get_prefix(ctx.message)
                 embed.description += "\n" + lang.f_settings_language_list_all_languages(
-                    f"`{await ctx.bot.get_prefix(ctx.message)}settings language`")
+                    f"`{prefixes[0]}settings language`")
                 await ctx.send(embed=embed)
                 return
 

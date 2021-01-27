@@ -5,6 +5,9 @@ settings_language_list_all_languages: "To list all languages run {}"
 settings_language_changed_language: "Changed your language to {}"
 settings_language_all_languages: "All languages"
 settings_language_abbreviation: "abbreviation"
+settings_language_current_language: "Your current language"
+settings_language_change_language: "Change your language"
+settings_language_new_language: "abbreviation of new language"
 
 ## command: settings prefix
 settings_prefix_current_prefix: "Current prefix"
