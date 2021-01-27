@@ -37,16 +37,14 @@ class Moderation(Cog):
             return
 
         embed: Embed = Embed(title="Kicked " + str(member), color=Colours.kick, timestamp=datetime.now())
-        if reason:
-            embed.add_field(name="Reason", value=reason, inline=False)
+        embed.add_field(name="Reason", value=reason, inline=False)
         embed.add_field(name="kicked by", value=ctx.author.display_name, inline=False)
         await ctx.send(embed=embed)
         await log(ctx.guild, embed=embed)
 
         private: Embed = Embed(title="You have been kicked from " + ctx.guild.name, color=Colours.kick,
                                timestamp=datetime.now())
-        if reason:
-            private.add_field(name="Reason", value=reason, inline=False)
+        private.add_field(name="Reason", value=reason, inline=False)
 
         private.set_thumbnail(url=ctx.guild.icon_url)
         private.add_field(name="kicked by", value=ctx.author.display_name, inline=False)
