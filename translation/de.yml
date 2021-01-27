@@ -1,0 +1,7 @@
+# settings cog
+## command: settings language
+settings_language_language_does_not_exists: "Die Sprache {} gibt es nicht"
+settings_language_list_all_languages: "Um alle Sprachen aufzulisten, gib {} ein"
+settings_language_changed_language: "Deine Sprache wurde zu {} geändert"
+settings_language_all_languages: "Sprachen"
+settings_language_abbreviation: "Abkürzung"

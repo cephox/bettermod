@@ -9,10 +9,10 @@ class Language:
     def __init__(self, name, abbreviation):
         self.abbreviation = abbreviation
         self.name = name
-        self._translation = yaml.safe_load(open(f"translation/{abbreviation}.yml"))
+        self._translations = yaml.safe_load(open(f"translation/{abbreviation}.yml"))
 
     def reload(self):
-        self._translation = yaml.safe_load(open(f"translation/{self.abbreviation}.yml"))
+        self._translations = yaml.safe_load(open(f"translation/{self.abbreviation}.yml"))
 
     def __getattr__(self, item):
         if item == "_translations":
@@ -38,3 +38,8 @@ def get_languages():
 
 def get_user_language(uid):
     return get_language(database.get_user(uid)["language"])
+
+
+def update_user_language(uid, abbr):
+    database.update_user(uid, {"language": abbr})
+    return get_user_language(uid)
