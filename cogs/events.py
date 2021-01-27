@@ -1,12 +1,12 @@
 from datetime import datetime
 
-from discord.colour import Color
 from discord.embeds import Embed
 from discord.ext.commands import Cog, Bot
 from discord.message import Message
 from discord.raw_models import RawMessageDeleteEvent
 from discord.utils import get
 
+from colours import Colours
 from logger import log
 
 
@@ -16,7 +16,7 @@ class Events(Cog):
 
     async def on_message_delete(self, message: Message):
         if message.content:
-            embed = Embed(title="Message deleted", color=Color.orange(), timestamp=datetime.now())
+            embed = Embed(title="Message deleted", color=Colours.orange(), timestamp=datetime.now())
             embed.add_field(name="Content", value=message.content, inline=False)
             embed.add_field(name="Channel", value=message.channel.mention)
             embed.set_author(name=message.author.name + "#" + message.author.discriminator,
@@ -34,7 +34,7 @@ class Events(Cog):
 
         guild = self.bot.get_guild(payload.guild_id)
 
-        embed = Embed(title="Uncached Message deleted", color=Color.orange(), timestamp=datetime.now())
+        embed = Embed(title="Uncached Message deleted", color=Colours.orange(), timestamp=datetime.now())
         channel = get(guild.channels, id=payload.channel_id)
         embed.add_field(name="Channel", value=channel.mention)
         embed.add_field(name="Message ID", value=payload.message_id)

@@ -1,5 +1,4 @@
 #!/bin/python
-from discord.colour import Color
 from discord.embeds import Embed
 from discord.ext.commands import AutoShardedBot
 from discord.ext.commands import Context
@@ -10,6 +9,7 @@ from cogs.debug import Debugging
 from cogs.events import Events
 from cogs.moderation import Moderation
 from cogs.settings import Settings
+from colours import Colours
 from database import database
 from util import check_for_token, add_cogs
 
@@ -25,7 +25,7 @@ async def on_ready():
 
 @bot.event
 async def on_command_error(ctx: Context, error):
-    embed = Embed(color=Color(0xff0000))
+    embed = Embed(color=Colours.red)
 
     if isinstance(error, MissingRequiredArgument):
 

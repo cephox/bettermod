@@ -1,11 +1,11 @@
 from datetime import datetime
 
 from discord.channel import TextChannel
-from discord.colour import Color
 from discord.embeds import Embed
 from discord.ext.commands import Cog, Bot, Context, group, has_permissions
 from discord.utils import get
 
+from colours import Colours
 from database import database
 from logger import log
 
@@ -25,7 +25,7 @@ class Settings(Cog):
         Changes the channel to the preferred log channel.
         <textchannel>
         """
-        embed: Embed = Embed(title="Changed log channel", color=Color(0x1bb6d1), timestamp=datetime.now())
+        embed: Embed = Embed(title="Changed log channel", color=Colours.default, timestamp=datetime.now())
 
         try:
             old_channel_id = database.get_guild(ctx.guild.id)["log_channel"]
