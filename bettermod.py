@@ -5,7 +5,7 @@ from discord.ext.commands import Context
 from discord.ext.commands.errors import MissingRequiredArgument, MemberNotFound, MissingPermissions
 
 import logger
-from cogs.debug import Debugging
+import warn
 from cogs.events import Events
 from cogs.moderation import Moderation
 from cogs.settings import Settings
@@ -64,5 +64,7 @@ async def on_command_error(ctx: Context, error):
 
 
 logger.init()
-add_cogs(bot, Debugging, Moderation, Settings, Events)
+warn.init()
+
+add_cogs(bot, Moderation, Settings, Events)
 bot.run(database.get_token())
