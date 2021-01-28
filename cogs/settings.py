@@ -17,7 +17,7 @@ class Settings(Cog):
         pass
 
     @settings.command()
-    @has_permissions()
+    @has_permissions(administrator=True)
     async def prefix(self, ctx: Context, prefix: Optional[str] = ""):
         lang = get_user_language(ctx.author.id)
         if prefix == "":
