@@ -1,5 +1,10 @@
 # global values
 name: German
+"no": Nein
+"yes": Ja
+none: Keine
+
+member_id: Nutzer ID
 
 # settings cog
 ## command: settings language
@@ -17,3 +22,9 @@ settings_prefix_current_prefix: "Aktueller Präfix"
 settings_prefix_change_prefix: "Präfix ändern"
 settings_prefix_new_prefix: "Neuer Präfix"
 settings_prefix_changed_new_prefix: "Der Präfix wurde zu {} geändert"
+
+# permissions cog
+permissions_permission_set_for: "Berechtigung für {} geändert"
+permissions_permission_before: "Berechtigung zuvor"
+permissions_permission_set_by: "Änderung vorgenommen"
+permissions_permission_total: "Alle Berechtigungen"

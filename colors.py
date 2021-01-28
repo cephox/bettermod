@@ -8,6 +8,8 @@ class Colors:
 
     default = Color(0x006e7a)
 
+    permission = Color(0x2f9c00)
+
     error = Color(0xff0000)
     warning = Color(0xffd500)
 
