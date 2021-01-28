@@ -49,7 +49,8 @@ class Settings(Cog):
 
             prefixes = await ctx.bot.get_prefix(ctx.message)
             embed.add_field(name=userlang.settings_language_change_language,
-                            value=f"`{prefixes[0]}settings language <{userlang.settings_language_new_language}>`", inline=False)
+                            value=f"`{prefixes[0]}settings language <{userlang.settings_language_new_language}>`",
+                            inline=False)
 
             await ctx.send(embed=embed)
         else:
