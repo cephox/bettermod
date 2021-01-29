@@ -1,8 +1,16 @@
 from sys import argv
 
+from discord.ext.commands import CommandError
 from discord.message import Message
 
 from database import database, guild_defaults
+
+
+async def can_run_command(ctx, command):
+    try:
+        return await ctx.bot.get_command(command).can_run(ctx)
+    except CommandError:
+        return False
 
 
 def start_bot(bot):

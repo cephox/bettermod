@@ -8,7 +8,7 @@ from discord.ext.commands import Cog, Context, group, has_permissions
 from colors import Colors
 from log import update_log_channel, get_log_channel, log
 from translation import update_user_language, get_user_language, get_languages, get_language
-from util import update_prefix
+from util import update_prefix, can_run_command
 
 
 class Settings(Cog):
@@ -17,7 +17,30 @@ class Settings(Cog):
 
     @group(name="settings", aliases=["config"])
     async def settings(self, ctx: Context):
-        pass
+        lang = get_user_language(ctx.author.id)
+        embed = Embed(color=Colors.default, timestamp=datetime.now())
+        embed.add_field(name="__" + lang.settings_private_settings + "__", value="** **", inline=False)
+        embed.add_field(name=lang.settings_language_language, value=f"`{lang.name}`")
+
+        if (log := await can_run_command(ctx, "settings log")) | (
+                pref := await can_run_command(ctx, "settings prefix")):
+            embed.add_field(name="** **", value="** **", inline=False)
+            embed.add_field(name="__" + lang.settings_server_settings + "__", value="** **", inline=False)
+
+        if log:
+            embed.add_field(name=lang.settings_log_log_channel,
+                            value=ctx.guild.get_channel(channel_id=get_log_channel(ctx)).mention)
+
+        prefixes = await ctx.bot.get_prefix(ctx.message)
+        if pref:
+            embed.add_field(name=lang.settings_prefix_prefix, value=f"`{prefixes[0]}`")
+
+        embed.add_field(name="** **", value="** **", inline=False)
+        embed.add_field(name="__" + lang.settings_change_settings + "__",
+                        value=f"`{prefixes[0]}settings <{lang.settings_change_settings_setting}> [{lang.settings_change_settings_value}]`",
+                        inline=False)
+
+        await ctx.send(embed=embed)
 
     @settings.command()
     @has_permissions(administrator=True)

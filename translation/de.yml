@@ -13,7 +13,13 @@ channel_id: Channel ID
 changed_by: "Geändert von"
 
 # settings cog
+settings_private_settings: "Eigene Einstellungen"
+settings_server_settings: "Server Einstellungen"
+settings_change_settings: "Einstellungen ändern"
+settings_change_settings_setting: "Einstellung"
+settings_change_settings_value: "Wert"
 ## command: settings language
+settings_language_language: "Sprache"
 settings_language_language_does_not_exists: "Die Sprache {} gibt es nicht"
 settings_language_list_all_languages: "Um alle Sprachen aufzulisten, gib {} ein"
 settings_language_changed_language: "Deine Sprache wurde zu {} geändert"
