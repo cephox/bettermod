@@ -4,6 +4,8 @@ name: English
 "yes": "yes"
 none: None
 
+enabled: "Enabled"
+
 member_id: Member ID
 role_id: Role ID
 
@@ -29,3 +31,5 @@ permissions_permission_set_for: "Changed permissions for {}"
 permissions_permission_before: "Permission previously"
 permissions_permission_set_by: "Changed permission by"
 permissions_permission_total: "Total permissions"
+permissions_permissions_for: "Permissions for {}"
+permissions_permission_for: "Permission {} for {}"

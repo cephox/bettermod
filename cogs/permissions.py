@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import Optional, Union
 
 from discord.embeds import Embed
 from discord.ext.commands import Cog, Context, group, has_permissions
@@ -17,54 +18,97 @@ class Permissions(Cog):
 
     @group(aliases=["permission"])
     @has_permissions(administrator=True)
-    async def permissions(self, ctx: Context):
-        pass
+    async def permissions(self, ctx: Context, mention: Union[Member, Role], permission: Optional[str] = "",
+                          enabled: Optional[int] = -1):
+        if isinstance(mention, Member):
+            await self.member(ctx, mention, permission, enabled)
+        elif isinstance(mention, Role):
+            await self.member(ctx, mention, permission, enabled)
 
-    @permissions.command()
-    async def member(self, ctx: Context, member: Member, permission: str, enabled: int):
+    async def member(self, ctx: Context, member: Member, permission: Optional[str] = "", enabled: Optional[int] = -1):
         lang = get_user_language(ctx.author.id)
 
-        before = lang.yes if has_own_permission(permission, get_user_permissions(member)) else lang.no
+        if not permission:
+            embed = Embed(color=Colors.permission, timestamp=datetime.now())
+            embed.add_field(name=lang.f_permissions_permissions_for(str(member)),
+                            value="\n".join([f"`{i.title().replace('_', ' ')}`" for i in
+                                             list_user_permissions(member)]) if list_user_permissions(
+                                member) else lang.none)
+            embed.set_thumbnail(url=member.avatar_url)
 
-        update_user_permission(member, permission, enabled > 0)
+            await ctx.send(embed=embed)
+            return
 
-        embed = Embed(color=Colors.permission, timestamp=datetime.now())
-        embed.add_field(name=lang.f_permissions_permission_set_for(str(member)),
-                        value="`" + permission.title().replace("_",
-                                                               " ") + "` » `" + (
-                                  lang.yes if enabled > 0 else lang.no) + "`",
-                        inline=False)
-        embed.add_field(name=lang.permissions_permission_before, value=f"`{before}`", inline=False)
-        embed.add_field(name=lang.permissions_permission_set_by, value=ctx.author.mention, inline=False)
-        embed.add_field(name=lang.permissions_permission_total,
-                        value="\n".join([f"`{i.title().replace('_', ' ')}`" for i in
-                                         list_user_permissions(member)]) if list_user_permissions(
-                            member) else lang.none)
-        embed.set_thumbnail(url=member.avatar_url)
-        embed.set_footer(text=lang.member_id + ": " + str(member.id))
-        await ctx.send(embed=embed)
+        if permission and enabled == -1:
+            perm = lang.yes if has_own_permission(permission, get_user_permissions(member)) else lang.no
+            embed = Embed(color=Colors.permission, timestamp=datetime.now())
+            embed.add_field(name=lang.f_permissions_permission_for(permission, str(member)),
+                            value=lang.enabled + f": `{perm}`")
+            embed.set_thumbnail(url=member.avatar_url)
+            await ctx.send(embed=embed)
+            return
 
-    @permissions.command()
-    async def role(self, ctx: Context, role: Role, permission: str, enabled: int):
+        if permission and enabled != -1:
+            before = lang.yes if has_own_permission(permission, get_user_permissions(member)) else lang.no
+
+            update_user_permission(member, permission, enabled > 0)
+
+            embed = Embed(color=Colors.permission, timestamp=datetime.now())
+            embed.add_field(name=lang.f_permissions_permission_set_for(str(member)),
+                            value="`" + permission.title().replace("_",
+                                                                   " ") + "` » `" + (
+                                      lang.yes if enabled > 0 else lang.no) + "`",
+                            inline=False)
+            embed.add_field(name=lang.permissions_permission_before, value=f"`{before}`", inline=False)
+            embed.add_field(name=lang.permissions_permission_set_by, value=ctx.author.mention, inline=False)
+            embed.add_field(name=lang.permissions_permission_total,
+                            value="\n".join([f"`{i.title().replace('_', ' ')}`" for i in
+                                             list_user_permissions(member)]) if list_user_permissions(
+                                member) else lang.none)
+            embed.set_thumbnail(url=member.avatar_url)
+            embed.set_footer(text=lang.member_id + ": " + str(member.id))
+            await ctx.send(embed=embed)
+
+    async def role(self, ctx: Context, role: Role, permission: Optional[str] = "", enabled: Optional[int] = -1):
         lang = get_user_language(ctx.author.id)
 
-        before = lang.yes if has_own_permission(permission, get_role_permissions(role)) else lang.no
+        if not permission:
+            embed = Embed(color=Colors.permission, timestamp=datetime.now())
+            embed.add_field(name=lang.f_permissions_permissions_for("@" + str(role)),
+                            value="\n".join([f"`{i.title().replace('_', ' ')}`" for i in
+                                             list_role_permissions(role)]) if list_role_permissions(
+                                role) else lang.none)
 
-        update_role_permission(role, permission, enabled > 0)
+            await ctx.send(embed=embed)
+            return
 
-        embed = Embed(color=Colors.permission, timestamp=datetime.now())
-        embed.add_field(name=lang.f_permissions_permission_set_for(str(role)),
-                        value="`" + permission.title().replace("_",
-                                                               " ") + "` » `" + (
-                                  lang.yes if enabled > 0 else lang.no) + "`",
-                        inline=False)
-        embed.add_field(name=lang.permissions_permission_before, value=f"`{before}`", inline=False)
-        embed.add_field(name=lang.permissions_permission_set_by, value=ctx.author.mention, inline=False)
-        embed.add_field(name=lang.permissions_permission_total,
-                        value="\n".join([f"`{i.title().replace('_', ' ')}`" for i in
-                                         list_role_permissions(role)]) if list_role_permissions(role) else lang.none)
-        embed.set_footer(text=lang.role_id + ": " + str(role.id))
-        await ctx.send(embed=embed)
+        if permission and enabled == -1:
+            perm = lang.yes if has_own_permission(permission, get_role_permissions(role)) else lang.no
+            embed = Embed(color=Colors.permission, timestamp=datetime.now())
+            embed.add_field(name=lang.f_permissions_permission_for(permission, "@" + str(role)),
+                            value=lang.enabled + f": `{perm}`")
+            await ctx.send(embed=embed)
+            return
+
+        if permission and enabled != -1:
+            before = lang.yes if has_own_permission(permission, get_role_permissions(role)) else lang.no
+
+            update_role_permission(role, permission, enabled > 0)
+
+            embed = Embed(color=Colors.permission, timestamp=datetime.now())
+            embed.add_field(name=lang.f_permissions_permission_set_for(str(role)),
+                            value="`" + permission.title().replace("_",
+                                                                   " ") + "` » `" + (
+                                      lang.yes if enabled > 0 else lang.no) + "`",
+                            inline=False)
+            embed.add_field(name=lang.permissions_permission_before, value=f"`{before}`", inline=False)
+            embed.add_field(name=lang.permissions_permission_set_by, value=ctx.author.mention, inline=False)
+            embed.add_field(name=lang.permissions_permission_total,
+                            value="\n".join([f"`{i.title().replace('_', ' ')}`" for i in
+                                             list_role_permissions(role)]) if list_role_permissions(
+                                role) else lang.none)
+            embed.set_footer(text=lang.role_id + ": " + str(role.id))
+            await ctx.send(embed=embed)
 
 
 def setup(bot):

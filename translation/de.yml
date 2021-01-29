@@ -4,6 +4,8 @@ name: German
 "yes": Ja
 none: Keine
 
+enabled: "Aktiviert"
+
 member_id: Nutzer ID
 role_id: Rollen ID
 
@@ -29,3 +31,5 @@ permissions_permission_set_for: "Berechtigung für {} geändert"
 permissions_permission_before: "Berechtigung zuvor"
 permissions_permission_set_by: "Änderung vorgenommen"
 permissions_permission_total: "Alle Berechtigungen"
+permissions_permissions_for: "Berechtigungen für {}"
+permissions_permission_for: "Berechtigung {} für {}"
