@@ -8,6 +8,9 @@ enabled: "Enabled"
 
 member_id: Member ID
 role_id: Role ID
+channel_id: Channel ID
+
+changed_by: "Changed by"
 
 # settings cog
 ## command: settings language
@@ -25,6 +28,10 @@ settings_prefix_current_prefix: "Current prefix"
 settings_prefix_change_prefix: "Change prefix"
 settings_prefix_new_prefix: "new prefix"
 settings_prefix_changed_new_prefix: "The prefix has been changed to {}"
+
+## command: settings log
+settings_log_new_log_channel: "New log channel"
+settings_log_current_log_channel: "Current log channel"
 
 # permissions cog
 permissions_permission_set_for: "Changed permissions for {}"

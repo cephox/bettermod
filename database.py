@@ -4,7 +4,8 @@ user_defaults = {
     "language": "en"
 }
 guild_defaults = {
-    "prefix": "--"
+    "prefix": "--",
+    "log_channel": "0"
 }
 
 

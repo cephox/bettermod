@@ -7,6 +7,7 @@ class Colors:
     orange = Color.orange()
 
     default = Color(0x006e7a)
+    log_channel = Color(0x6203fc)
 
     permission = Color(0x2f9c00)
 

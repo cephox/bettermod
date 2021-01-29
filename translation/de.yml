@@ -2,12 +2,15 @@
 name: German
 "no": Nein
 "yes": Ja
-none: Keine
+none: Keine(r)
 
 enabled: "Aktiviert"
 
 member_id: Nutzer ID
 role_id: Rollen ID
+channel_id: Channel ID
+
+changed_by: "Geändert von"
 
 # settings cog
 ## command: settings language
@@ -25,6 +28,10 @@ settings_prefix_current_prefix: "Aktueller Präfix"
 settings_prefix_change_prefix: "Präfix ändern"
 settings_prefix_new_prefix: "Neuer Präfix"
 settings_prefix_changed_new_prefix: "Der Präfix wurde zu {} geändert"
+
+## command: settings log
+settings_log_new_log_channel: "Neuer Log Kanal"
+settings_log_current_log_channel: "Aktueller Log Kanal"
 
 # permissions cog
 permissions_permission_set_for: "Berechtigung für {} geändert"
