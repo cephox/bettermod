@@ -11,7 +11,7 @@ permissions = {
 
 def has_own_permissions(**perms):
     def wrapper(ctx: Context):
-        user_perms = get_user_permissions(ctx.author)
+        user_perms = get_user_role_permissions(ctx.author)
         missing = [i for i in perms if not has_own_permission(i, user_perms)]
 
         if missing:
@@ -22,8 +22,20 @@ def has_own_permissions(**perms):
     return check(wrapper)
 
 
-def list_user_permission(member: Member):
+def get_user_role_permissions(member: Member):
     perms = get_user_permissions(member)
+    for role in member.roles:
+        perms |= get_role_permissions(role)
+    return perms
+
+
+def list_user_permissions(member: Member):
+    perms = get_user_permissions(member)
+    return [p for p in permissions if perms & permissions[p]]
+
+
+def list_role_permissions(role: Role):
+    perms = get_role_permissions(role)
     return [p for p in permissions if perms & permissions[p]]
 
 

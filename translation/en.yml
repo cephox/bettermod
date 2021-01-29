@@ -5,6 +5,7 @@ name: English
 none: None
 
 member_id: Member ID
+role_id: Role ID
 
 # settings cog
 ## command: settings language
