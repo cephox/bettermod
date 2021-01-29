@@ -23,7 +23,7 @@ class Permissions(Cog):
         if isinstance(mention, Member):
             await self.member(ctx, mention, permission, enabled)
         elif isinstance(mention, Role):
-            await self.member(ctx, mention, permission, enabled)
+            await self.role(ctx, mention, permission, enabled)
 
     async def member(self, ctx: Context, member: Member, permission: Optional[str] = "", enabled: Optional[int] = -1):
         lang = get_user_language(ctx.author.id)
