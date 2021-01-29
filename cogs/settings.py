@@ -17,6 +17,8 @@ class Settings(Cog):
 
     @group(name="settings", aliases=["config"])
     async def settings(self, ctx: Context):
+        if ctx.invoked_subcommand:
+            return
         lang = get_user_language(ctx.author.id)
         embed = Embed(color=Colors.default, timestamp=datetime.now())
         embed.add_field(name="__" + lang.settings_private_settings + "__", value="** **", inline=False)
@@ -87,16 +89,16 @@ class Settings(Cog):
             userlang = get_user_language(ctx.author.id)
             embed = Embed(color=Colors.default, timestamp=datetime.now())
 
-            embed.add_field(name=userlang.settings_language_current_language,
+            embed.add_field(name="__" + userlang.settings_language_current_language + "__",
                             value=f"`{userlang.abbreviation} ({userlang.name})`", inline=False)
 
-            embed.add_field(name=userlang.settings_language_all_languages, value="** **", inline=False)
+            embed.add_field(name="__" + userlang.settings_language_all_languages + "__", value="** **", inline=False)
             for lang in get_languages().keys():
                 embed.add_field(name=get_language(lang).name,
                                 value=f"**{userlang.settings_language_abbreviation}**\n`{lang}`")
 
             prefixes = await ctx.bot.get_prefix(ctx.message)
-            embed.add_field(name=userlang.settings_language_change_language,
+            embed.add_field(name="__" + userlang.settings_language_change_language + "__",
                             value=f"`{prefixes[0]}settings language <{userlang.settings_language_new_language}>`",
                             inline=False)
 
