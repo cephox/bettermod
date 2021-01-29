@@ -48,3 +48,6 @@ permissions_permission_set_by: "Changed permission by"
 permissions_permission_total: "Total permissions"
 permissions_permissions_for: "Permissions for {}"
 permissions_permission_for: "Permission {} for {}"
+
+# errors cog
+error_command_not_found: "Command {} not found"

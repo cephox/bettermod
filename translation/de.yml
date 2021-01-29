@@ -46,3 +46,6 @@ permissions_permission_set_by: "Änderung vorgenommen"
 permissions_permission_total: "Alle Berechtigungen"
 permissions_permissions_for: "Berechtigungen für {}"
 permissions_permission_for: "Berechtigung {} für {}"
+
+# errors cog
+error_command_not_found: "{} nicht gefunden"
