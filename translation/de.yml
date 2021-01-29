@@ -3,6 +3,7 @@ name: German
 "no": Nein
 "yes": Ja
 none: Keine(r)
+add: und
 
 enabled: "Aktiviert"
 
@@ -49,3 +50,4 @@ permissions_permission_for: "Berechtigung {} für {}"
 
 # errors cog
 error_command_not_found: "{} nicht gefunden"
+error_missing_permissions: "Fehlende Berechtigung(en)"

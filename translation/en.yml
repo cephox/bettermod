@@ -3,6 +3,7 @@ name: English
 "no": "no"
 "yes": "yes"
 none: None
+add: and
 
 enabled: "Enabled"
 
@@ -51,3 +52,4 @@ permissions_permission_for: "Permission {} for {}"
 
 # errors cog
 error_command_not_found: "Command {} not found"
+error_missing_permissions: "Missing permissions"
