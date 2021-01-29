@@ -7,6 +7,7 @@ from discord.member import Member
 from discord.role import Role
 
 from colors import Colors
+from log import log
 from permission import update_user_permission, list_user_permissions, get_user_permissions, has_own_permission, \
     get_role_permissions, update_role_permission, list_role_permissions
 from translation import get_user_language
@@ -68,6 +69,7 @@ class Permissions(Cog):
             embed.set_thumbnail(url=member.avatar_url)
             embed.set_footer(text=lang.member_id + ": " + str(member.id))
             await ctx.send(embed=embed)
+            await log(ctx, embed=embed)
 
     async def role(self, ctx: Context, role: Role, permission: Optional[str] = "", enabled: Optional[int] = -1):
         lang = get_user_language(ctx.author.id)
@@ -109,6 +111,7 @@ class Permissions(Cog):
                                 role) else lang.none)
             embed.set_footer(text=lang.role_id + ": " + str(role.id))
             await ctx.send(embed=embed)
+            await log(ctx, embed=embed)
 
 
 def setup(bot):
