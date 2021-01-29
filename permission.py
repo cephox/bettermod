@@ -9,7 +9,7 @@ permissions = {
 }
 
 
-def has_own_permissions(**perms):
+def has_db_permissions(**perms):
     def wrapper(ctx: Context):
         user_perms = get_user_role_permissions(ctx.author)
         missing = [i for i in perms if not has_own_permission(i, user_perms)]
