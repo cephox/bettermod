@@ -51,3 +51,6 @@ permissions_permission_for: "Berechtigung {} für {}"
 # errors cog
 error_command_not_found: "{} nicht gefunden"
 error_missing_permissions: "Fehlende Berechtigung(en)"
+
+error_unknown: "Unbekannter Fehler"
+error_unknown_debug_information: "Debug Informationen"

@@ -27,6 +27,9 @@ class Errors(Cog):
             else:
                 fmt = ' and '.join(["`" + i + "`" for i in missing])
             embed.add_field(name=lang.error_missing_permissions, value=fmt, inline=False)
+        else:
+            embed.add_field(name=lang.error_unknown, value=str(error), inline=False)
+            embed.add_field(name=lang.error_debug_information, value=str(type(error)), inline=False)
         await ctx.send(embed=embed)
 
 
